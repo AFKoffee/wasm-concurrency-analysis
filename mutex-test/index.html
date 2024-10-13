@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello wasm-pack!</title>
+  </head>
+  <body>
+    <script type="module">
+        import init, {get_index, add_index} from "./pkg/mutex_test.js";
+        init().then(() => {
+            console.log(get_index());
+            add_index();
+            console.log(get_index());
+            add_index();
+            console.log(get_index());
+            add_index();
+            console.log(get_index());
+            add_index();
+            console.log(get_index());
+            add_index();
+        });
+    </script>
+  </body>
+</html>

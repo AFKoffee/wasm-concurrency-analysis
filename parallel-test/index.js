@@ -28,7 +28,7 @@ function loadWasm() {
     return
   }
 
-  wasm_bindgen("./pkg/wasm_concurrency_analysis_bg.wasm")
+  wasm_bindgen("./pkg/parallel_test_bg.wasm")
     .then(run)
     .catch(console.error);
 }
