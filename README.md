@@ -55,3 +55,7 @@ Long-term arguments for the *Bytecode Alliance* libraries:
  - The organization is backed by big vendors like *Mozilla*, *Amazon*, *Anaconda*, *Docker* and more
  - The organization is non-profit and works open-source
  - --> The libraries are likely to be maintained long-term and to incorporate new standardized features and proposals fast making them a reliable fit for this project.
+
+ ## Other useful ressources and repositories
+ - [Binaryen](https://github.com/WebAssembly/binaryen): Official optimizer and compiler of WebAssembly, used by *emscripten*
+ - [Wabt](https://github.com/WebAssembly/wabt): WebAssembly binary toolkit. Offers lots of useful tools to manipulate, transform and view WebAssembly programs.
