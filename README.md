@@ -22,7 +22,7 @@ Principles:
 - Assume, that the `memory.atomic.wait` instruction always targets an address containing a mutex -> i.e. represents waiting to aquire a lock.
 - Assume, that the `memory.atomic.notify` instructon always targets an address containing a mutex -> i.e. represents releasing a lock.
 
-By scanning the adresses of those locks in conjunction with the corresponding memory, one can identifiy the different locks. However, a thread does not have to use those instructions to change mutex state - `i32.atomic.rw.cmpxchng` also could.
+By scanning the adresses of those locks in conjunction with the corresponding memory, one can identifiy the different locks. However, a thread does not have to use those instructions to change mutex state - `i32.atomic.rmw.cmpxchg` also could.
 
 **Idea**:\
 Use *wait* and *notify* to identify the mutex-addresses. Track every change to those addresses assuming *0* to mean unlocked and *1* to mean locked.
