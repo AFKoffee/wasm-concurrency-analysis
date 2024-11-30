@@ -24,6 +24,7 @@ extern "C" {
 
 #[wasm_bindgen]
 pub async  fn create_deadlock() -> Result<(), JsValue> {
+    console_log!("Main: starting attempt to deadlock.");
     let worker1 = spawner::spawn()?;
     let worker2 = spawner::spawn()?;
 
@@ -41,7 +42,7 @@ pub async  fn create_deadlock() -> Result<(), JsValue> {
         deadlock_prone_task(unsafe {&Box::from_raw(ptr2)}, unsafe {&Box::from_raw(ptr1)}, 2)
     }) });
 
-    console_log!("Instanciated work!");
+    console_log!("Main: instanciated workloads for concurrency.");
     
     let res1 = execute_work(work1, &worker1);
 
