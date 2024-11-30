@@ -26,9 +26,14 @@ There are several approaches to instrument Wasm. Some of them are:
 Extend the Wasabi framework to support the required proposals for multithreaded WebAssembly. Then utilize the framework to instrument the Wasm binary and use the inserted hooks to create a trace of important events (memory accesses, locks, unlocks, ...). Run deadlock- or datarace-detection algorithms on the trace to identify concurrency-related bugs in the original binary.
 
 ## Rough Roadmap
-- [x]: Create an example program that deadlocks on execution using WebWorkers and Wasm
-- [ ]: Write a document showing how the Wasm proposals, which are relevant for this project, relate to each other. (Why do we need support for them? What functionality do they provide?)
-- [ ]: Examine the deadlocking examples to identify the parts in the Wasm module, which have to be instrumented for useful execution tracing.
-- [ ]: Extend the Wasabi framework to support the relevant proposals in order to make Wasm binary instrumentation possible for our purposes.
-- [ ]: Create a trace using the hooks from the Wasabi instrumentation.
-- [ ]: Perform deadlock detection on the trace.
+- [x] Create an example program that deadlocks on execution using WebWorkers and Wasm
+
+- [ ] Write a document showing how the Wasm proposals, which are relevant for this project, relate to each other. (Why do we need support for them? What functionality do they provide?)
+
+- [ ] Examine the deadlocking examples to identify the parts in the Wasm module, which have to be instrumented for useful execution tracing.
+
+- [ ] Extend the Wasabi framework to support the relevant proposals in order to make Wasm binary instrumentation possible for our purposes.
+
+- [ ] Create a trace using the hooks from the Wasabi instrumentation.
+
+- [ ] Perform deadlock detection on the trace.
