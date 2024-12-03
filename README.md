@@ -17,7 +17,7 @@ The Wasm specification doesn't provide functionality to create or join threads a
 
 ## Related Projects
 There are several approaches to instrument Wasm. Some of them are: 
-- [Wasabi](https://github.com/danleh/wasabi/tree/master) (Paper [here](https://arxiv.org/pdf/1808.10652)): Written in Rust, instruments instructions with many low-level javascript hooks. **Problem**: No support for [threads proposal](https://github.com/WebAssembly/threads/blob/main/proposals/threads/Overview.md), [multi-memory proposal](https://github.com/WebAssembly/multi-memory/blob/main/proposals/multi-memory/Overview.md)
+- [Wasabi](https://github.com/danleh/wasabi/tree/master) (Paper [here](https://arxiv.org/pdf/1808.10652)): Written in Rust, instruments instructions with many low-level javascript hooks. **Problem**: No support for [threads proposal](https://github.com/WebAssembly/threads/blob/main/proposals/threads/Overview.md)
 - [WasmR3](https://github.com/sola-st/wasm-r3) (Paper [here](https://arxiv.org/pdf/2409.00708)): Record-Reduce-Replay framework for standalone WebAssembly benchmarking. This project is based on Wasabi.
 - [Fuzzm](https://github.com/fuzzm/fuzzm-project) (Paper [here](https://arxiv.org/pdf/2110.15433)): WebAssembly fuzzer. Acts as an inspiration for instrumenting Wasm in general.
 - [BREWasm](https://github.com/security-pride/BREWasm/tree/main) (Paper [here](https://arxiv.org/pdf/2305.01454)): Written in Python. This is a general purpose Wasm rewriting framework.
