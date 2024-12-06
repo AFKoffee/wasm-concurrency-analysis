@@ -39,7 +39,7 @@ execution according to the specification. This includes the management
 and creation of different module instances, the allocation of physical
 memory and correct representation of the abstract stack machine at runtime.
 In contemporary Wasm runtimes (e.g. SpiderMonkey from Firefox), the WebAssembly
-code may JIT compiled to native machine code. To use CPU registers in 
+code may be JIT compiled to native machine code. To use CPU registers in 
 an optimal way, the abstract stack machine is carefully translated into
 register based machine instructions, that resemble the original behavior.
 WebAssembly can therefore also be seen as a low-level intermediate language.
@@ -56,7 +56,7 @@ The execution of WebAssembly code is based on three important components:
 The _store_, the _stack_ and _module instances_.
 
 ### The Stack
-WebAssembly instructions interact with an implicit stack. The stack keeps
+WebAssembly instructions interact with an implicit stack. The stack keeps track
 of _operands_, _labels_, and _activations_:
 - Operands: Simple values, which are popped of the stack during instruction execution.
 - Labels: Active control instructions, that can be targeted by branching instructions. E.g. Loops, Blocks, ...

@@ -1,5 +1,5 @@
 # Relevant WebAssembly Extensions
-This document briefly describes WebAssembly extensions relevant for this project. All of them are standardized already (see status of finished proposals [here](https://github.com/WebAssembly/proposals/blob/main/finished-proposals.md)) Furthermore, all of the following extensions excluding _mutable-globals_ are already part of the WebAssembly 2.0 core specification.
+This document briefly describes WebAssembly extensions relevant for this project. All of them are standardized already (see status of finished proposals [here](https://github.com/WebAssembly/proposals/blob/main/finished-proposals.md)). Furthermore, all of the following extensions excluding _mutable-globals_ are already part of the WebAssembly 2.0 core specification.
 
 ## Related to Multithreading
 While _mutable-globals_ have some implications for multithreaded WebAssembly, the most crucial extension for concurrency is _bulk-memory_. The (not yet standardized) _threads_ proposal is described in a separate document.
@@ -27,7 +27,7 @@ Introduces a type of values: _reference types_. These are split into _funcrefs_ 
 
 Note, that those reference types are first-class references to objects in the runtime store and can only be stored in tables.
 
-Furthermore, this proposal introduces new table instructions to handle reference types, simplyfy access and extend its size if necessary.
+Furthermore, this proposal introduces new table instructions to handle reference types, simplify access and extend its size if necessary.
 
 
 ### Sign-extension Operators ([Official Overview](https://github.com/WebAssembly/spec/blob/main/proposals/sign-extension-ops/Overview.md)) 
