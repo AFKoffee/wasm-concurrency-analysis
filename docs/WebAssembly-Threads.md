@@ -6,6 +6,12 @@ A linear memory can now be marked as _shared_ - this holds true for memory __def
 
 Note: There is an important difference between _importing_ and _sharing_ a memory instance. When a module imports a _non-shared_ memory, it sees the changes made to the memory up until module instantiation, but recieves a reference to the unique copy of the original memory instance. It can therefore _not see_ the changes made afterwards to the original memory. When a module imports a _shared memory_, the original memory contents are _not copied_, but the module rather recieves a reference to the imported memory instance. This makes concurrent access of multiple agents to the same memory instance possible.
 
+The following figure illustrates how imports of standard memory instances works:
+![imported memory](imported_memory.png "Instance with imported Memory")
+
+The following figure shows, how shared memory instances are imported:
+![shared memory](shared_memory.png "Instance with shared Memory")
+
 ## Wait and Notify
 
 The notify and wait operators are optimizations over busy-waiting for a value

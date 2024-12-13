@@ -28,11 +28,11 @@ Extend the Wasabi framework to support the required proposals for multithreaded 
 ## Rough Roadmap
 - [x] Create an example program that deadlocks on execution using WebWorkers and Wasm
 
-- [ ] Write a document showing how the Wasm proposals, which are relevant for this project, relate to each other. (Why do we need support for them? What functionality do they provide?)
-
-- [ ] Examine the deadlocking examples to identify the parts in the Wasm module, which have to be instrumented for useful execution tracing.
+- [x] Write a document showing how the Wasm proposals, which are relevant for this project, relate to each other. (Why do we need support for them? What functionality do they provide?)
 
 - [ ] Extend the Wasabi framework to support the relevant proposals in order to make Wasm binary instrumentation possible for our purposes.
+
+- [ ] Examine the deadlocking examples to identify the parts in the Wasm module, which have to be instrumented for useful execution tracing.
 
 - [ ] Create a trace using the hooks from the Wasabi instrumentation.
 

@@ -83,6 +83,10 @@ entities that are imported, defined or exported by the module.
 
 ![module instantiation](module_instantiation.png "Module Instantiation")
 
+The following picture illustrates, how the store acts as a global collection holding runtime instances for various Wasm modules:
+
+![multiple instances](multiple_instances.png "Multiple instances sharing the same store")
+
 ### Invocation
 After a module has been instanciated. The host environment can invoke exported functions
 of the module to access the provided functionality. Note that calling an exported
