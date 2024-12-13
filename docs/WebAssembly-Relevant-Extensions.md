@@ -1,11 +1,11 @@
 # Relevant WebAssembly Extensions
-This document briefly describes WebAssembly extensions relevant for this project. All of them are standardized already (see status of finished proposals [here](https://github.com/WebAssembly/proposals/blob/main/finished-proposals.md)). Furthermore, all of the following extensions excluding _mutable-globals_ are already part of the WebAssembly 2.0 core specification.
+This document briefly describes WebAssembly extensions relevant for this project. All of them are standardized already (see status of finished proposals [here](https://github.com/WebAssembly/proposals/blob/main/finished-proposals.md)). Furthermore, all of the following extensions are already part of the WebAssembly 2.0 core specification.
 
 ## Related to Multithreading
 While _mutable-globals_ have some implications for multithreaded WebAssembly, the most crucial extension for concurrency is _bulk-memory_. The (not yet standardized) _threads_ proposal is described in a separate document.
 
 ### Mutable Globals ([Official Overview](https://github.com/WebAssembly/mutable-global/blob/master/proposals/mutable-global/Overview.md))
-Introduces the ability to make _globals_, that are imported to or exported from a WebAssembly module mutable. WebAssembly globals are local to the agent, and can therefore not be shared among threads. This makes them a perfect fit for thread local storage.
+Introduces the ability to make _globals_, that are imported to or exported from a WebAssembly module mutable. WebAssembly globals are local to the agent, and can therefore not be shared among threads. This makes them a perfect fit for thread local storage. (Added to the spec in [2018](https://github.com/WebAssembly/spec/commit/d8f775eed3645e689580610d101106cd1404b637))
 
 ### Bulk-Memory Operations ([Official Overview](https://github.com/WebAssembly/spec/blob/main/proposals/bulk-memory-operations/Overview.md))
 This proposal adds instructions to modify ranges of memory and table entries:
