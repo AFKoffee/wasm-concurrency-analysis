@@ -79,9 +79,9 @@ _Module Instantiation_ is the process of creating a runtime representation for a
 WebAssembly module. A _module instance_ collects all runtime representations of the
 entities that are imported, defined or exported by the module.
 
-**Note:** These runtime representations are put into the store and are only _referenced_
-by the module instance via indices into the respective store component. This will especially
-important, when talking about sharing memory between modules.
+**Note:** These runtime representations are put into the store and are only _referenced_ by the module instance via indices into the respective store component (see illustration below). This will especially important, when talking about sharing memory between modules.
+
+![module instantiation](module_instantiation.png "Module Instantiation")
 
 ### Invocation
 After a module has been instanciated. The host environment can invoke exported functions
