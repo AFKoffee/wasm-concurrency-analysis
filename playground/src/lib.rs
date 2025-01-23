@@ -79,6 +79,12 @@ fn deadlock_prone_task(first: &SyncronizedData, second: &SyncronizedData, worker
     //Ok(())
 }
 
+#[wasm_bindgen]
+pub fn lock_hook() {
+    //Noop: Only to make locks visible to the outside
+    console_log!("Acquired lock!");
+}
+
 struct SyncronizedData {
     data: Mutex<i64>
 }
@@ -89,6 +95,7 @@ impl SyncronizedData {
     }
 
     pub fn get_mut_data_ptr(&self) -> MutexGuard<'_, i64> {
+        lock_hook();
         self.data.lock().unwrap()
     }
 }
