@@ -1,3 +1,5 @@
+importScripts('pkg/playground_bg.wasabi.js')
+importScripts('pkg/analysis.js');
 importScripts('pkg/playground.js');
 
 console.log("JScript: initializing standalone worker")
