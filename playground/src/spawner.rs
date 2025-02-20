@@ -1,15 +1,16 @@
 use wasm_bindgen::{prelude::*, JsCast, JsValue};
 use web_sys::{DedicatedWorkerGlobalScope, Worker};
 
-use crate::Work;
+use crate::{register_new_thread, ThreadMetadata, Work};
 
-pub fn spawn() -> Result<Worker, JsValue> {
+pub fn spawn(context: &mut ThreadMetadata) -> Result<Worker, JsValue> {
     let worker = Worker::new("./worker.js")?;
     let array = js_sys::Array::new();
     array.push(&wasm_bindgen::module());
     array.push(&wasm_bindgen::memory());
     worker.post_message(&array)?;
-    console_log!("Main: created a new worker from within wasm.");
+    context.id = register_new_thread();
+    console_log!("Main: created a new worker from within wasm. Thread ID: {}", context.id);
     Ok(worker)
 }
 
