@@ -1,6 +1,6 @@
 use wasm_bindgen::prelude::*;
 use web_sys::Worker;
-use std::sync::{Mutex, MutexGuard};
+use parking_lot::{Mutex, MutexGuard};
 
 macro_rules! console_log {
     ($($t:tt)*) => (crate::log(&format_args!($($t)*).to_string()))
@@ -128,7 +128,7 @@ impl SyncronizedData {
 
     pub fn get_mut_data_ptr(&self, metadata: &ThreadMetadata, mutex_idx: usize) -> MutexGuard<'_, i64> {
         starting_attempt(&metadata.id, mutex_idx);
-        let val = self.data.lock().unwrap();
+        let val = self.data.lock();
         successful_attempt(&metadata.id, mutex_idx);
         val
     }
