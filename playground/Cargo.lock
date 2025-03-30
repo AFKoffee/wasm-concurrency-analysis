@@ -232,6 +232,7 @@ dependencies = [
 [[package]]
 name = "wasm-ca-rs"
 version = "0.1.0"
+source = "git+https://github.com/AFKoffee/wasm-ca-rs.git#5f695612c62169e1d9577cb80a39b8c348f91ac1"
 dependencies = [
  "parking_lot",
  "wasm-bindgen",
