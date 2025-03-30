@@ -1,58 +1,51 @@
-use std::hint;
-
-//use wasm_bindgen::prelude::*;
+use wasm_bindgen::prelude::*;
 use wasm_ca_rs::{mutex::TracingMutex, thread::thread_spawn};
 
-/*macro_rules! console_log {
+
+macro_rules! console_log {
     ($($t:tt)*) => (crate::log(&format_args!($($t)*).to_string()))
 }
-*/
 
 //mod spawner;
 //mod threadpool;
 
-/*struct ThreadMetadata {
+struct ThreadMetadata {
     id: String,
-}*/
+}
 
 static DATA_1: TracingMutex<i64> = TracingMutex::new(0);
 static DATA_2: TracingMutex<i64> = TracingMutex::new(0);
 
-/*#[wasm_bindgen]
+#[wasm_bindgen]
 extern "C" {
     #[wasm_bindgen(js_namespace = console)]
     fn log(s: &str);
     
     #[wasm_bindgen(js_namespace = console, js_name = log)]
     fn logv(x: &JsValue);
-}*/
+}
 
-#[export_name = "playground_create_deadlock"]
-pub extern "C" fn create_deadlock() {
-    /*let meta1 = ThreadMetadata {id: "1".into()};
-    let meta2 = ThreadMetadata {id: "2".into()};*/
+#[wasm_bindgen]
+pub fn create_deadlock() {
+    let meta1 = ThreadMetadata {id: "1".into()};
+    let meta2 = ThreadMetadata {id: "2".into()};
 
     thread_spawn(move || {
-        deadlock_prone_task(&DATA_1, &DATA_2/*, &meta1*/)
+        deadlock_prone_task(&DATA_1, &DATA_2, &meta1)
     });
 
     thread_spawn(move || {
-        deadlock_prone_task(&DATA_2, &DATA_1/*, &meta2*/)
+        deadlock_prone_task(&DATA_2, &DATA_1, &meta2)
     });
 }
 
-#[link(wasm_import_module = "playground")]
-unsafe extern "C" {
-    fn log_iterations(current_iter: i32);
-}
-
-fn deadlock_prone_task(first: &TracingMutex<i64>, second: &TracingMutex<i64>/*, metadata: &ThreadMetadata*/) {
-    //console_log!("Worker {}: starting worker task ...", metadata.id);
+fn deadlock_prone_task(first: &TracingMutex<i64>, second: &TracingMutex<i64>, metadata: &ThreadMetadata) {
+    console_log!("Worker {}: starting worker task ...", metadata.id);
     let mut i = 0;
     loop {
         increment_decrement(first, second);
         if i % 500 == 0 {
-            unsafe { log_iterations(i); }
+            console_log!("Worker {}: finished {i} iterations!", metadata.id)
         } 
         i += 1;
     }

@@ -14,10 +14,46 @@
     </div>
 
     <!-- Make `wasm_bindgen` available for `index.js` -->
-    <script src='./playground.wasabi.js'></script>
-    <script src='./analysis.js'></script>
+    <!--<script src='./pkg/playground_bg.wasabi.js'></script>
+    <script src='./pkg/analysis.js'></script>-->
     <!-- Note that there is no `type="module"` in the script tag -->
-    <script src="./index.js"></script>
+    <script type="module">
+        import init, { create_deadlock } from './pkg/playground.js';
+        async function run_wasm() {
+            console.log("JScript: loading wasm bindings ...");
+
+            let wasm = await init();
+
+            console.log('JScript: wasm module loaded.');
+
+            create_deadlock();
+        }
+
+        let button = document.getElementById("deadlock");
+
+        button.onclick = _event => {
+            run_wasm();
+        }
+
+        let file_button = document.getElementById("filetest");
+        file_button.onclick = async _event => {
+            const file = new File(["this is an example file"], "foo.txt", {
+                type: "text/plain",
+            });
+
+            let a = document.getElementById("invisible-download-link");
+            if (!a) {
+                a = document.createElement('a');
+                a.id = "invisible-download-link";
+            }
+            
+            a.href = URL.createObjectURL(file);
+            a.download = file.name;
+            document.body.appendChild(a);
+            a.click();
+        }
+
+    </script>
 </body>
 
 </html>
