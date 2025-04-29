@@ -1,5 +1,5 @@
 use wasm_bindgen::prelude::*;
-use wasm_ca_rs::{mutex::TracingMutex, thread::thread_spawn};
+use wasm_ca_rs::{mutex::TracingMutex, thread::{self, thread_spawn}};
 
 
 macro_rules! console_log {
@@ -27,15 +27,29 @@ extern "C" {
 
 #[wasm_bindgen]
 pub fn create_deadlock() {
-    let meta1 = ThreadMetadata {id: "1".into()};
-    let meta2 = ThreadMetadata {id: "2".into()};
+    // Run a detached thread to to use join without freezing the main thread
+    thread_spawn(|| {
+        let meta1 = ThreadMetadata {id: "1".into()};
+        let meta2 = ThreadMetadata {id: "2".into()};
 
-    thread_spawn(move || {
-        deadlock_prone_task(&DATA_1, &DATA_2, &meta1)
-    });
+        let t1 = thread_spawn(move || {
+            deadlock_prone_task(&DATA_1, &DATA_2, &meta1)
+        });
 
-    thread_spawn(move || {
-        deadlock_prone_task(&DATA_2, &DATA_1, &meta2)
+        let t2 = thread_spawn(move || {
+            deadlock_prone_task(&DATA_2, &DATA_1, &meta2)
+        });
+
+        console_log!("Thread {} waits for threads to finish ...", thread::thread_id());
+        match t1.join() {
+            Ok(()) => (),
+            Err(e) => console_log!("Error in thread 1: {e:?}")
+        };
+
+        match t2.join() {
+            Ok(()) => (),
+            Err(e) => console_log!("Error in thread 1: {e:?}")
+        };
     });
 }
 
