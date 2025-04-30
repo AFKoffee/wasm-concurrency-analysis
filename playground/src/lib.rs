@@ -29,6 +29,8 @@ extern "C" {
 pub fn create_deadlock() {
     // Run a detached thread to to use join without freezing the main thread
     thread_spawn(|| {
+        let _ = thread_spawn(||  console_log!("T{}: Testing Thread creation and termination", thread::thread_id())).join();
+
         let meta1 = ThreadMetadata {id: "1".into()};
         let meta2 = ThreadMetadata {id: "2".into()};
 
