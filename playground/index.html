@@ -13,11 +13,11 @@
         <button id="filetest">Save example file</button>
     </div>
 
-    <!-- Make `wasm_bindgen` available for `index.js` -->
     <!--<script src='./pkg/playground_bg.wasabi.js'></script>
     <script src='./pkg/analysis.js'></script>-->
-    <!-- Note that there is no `type="module"` in the script tag -->
     <script type="module">
+        // This tag initializes the wasm module with wasm-bindgen
+        // for the first time on the browser main thread.
         import init, { create_deadlock } from './pkg/playground.js';
         async function run_wasm() {
             console.log("JScript: loading wasm bindings ...");

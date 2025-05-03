@@ -6,13 +6,6 @@ macro_rules! console_log {
     ($($t:tt)*) => (crate::log(&format_args!($($t)*).to_string()))
 }
 
-//mod spawner;
-//mod threadpool;
-
-struct ThreadMetadata {
-    id: String,
-}
-
 static DATA_1: TracingMutex<i64> = TracingMutex::new(0);
 static DATA_2: TracingMutex<i64> = TracingMutex::new(0);
 
@@ -27,19 +20,18 @@ extern "C" {
 
 #[wasm_bindgen]
 pub fn create_deadlock() {
+    thread::set_bindgen_url_suffix(concat!("/pkg/", env!("CARGO_CRATE_NAME"), ".js").to_string());
+    
     // Run a detached thread to to use join without freezing the main thread
     thread_spawn(|| {
         let _ = thread_spawn(||  console_log!("T{}: Testing Thread creation and termination", thread::thread_id())).join();
 
-        let meta1 = ThreadMetadata {id: "1".into()};
-        let meta2 = ThreadMetadata {id: "2".into()};
-
         let t1 = thread_spawn(move || {
-            deadlock_prone_task(&DATA_1, &DATA_2, &meta1)
+            deadlock_prone_task(&DATA_1, &DATA_2)
         });
 
         let t2 = thread_spawn(move || {
-            deadlock_prone_task(&DATA_2, &DATA_1, &meta2)
+            deadlock_prone_task(&DATA_2, &DATA_1)
         });
 
         console_log!("Thread {} waits for threads to finish ...", thread::thread_id());
@@ -55,13 +47,13 @@ pub fn create_deadlock() {
     });
 }
 
-fn deadlock_prone_task(first: &TracingMutex<i64>, second: &TracingMutex<i64>, metadata: &ThreadMetadata) {
-    console_log!("Worker {}: starting worker task ...", metadata.id);
+fn deadlock_prone_task(first: &TracingMutex<i64>, second: &TracingMutex<i64>) {
+    console_log!("Worker {}: starting worker task ...", thread::thread_id());
     let mut i = 0;
     loop {
         increment_decrement(first, second);
         if i % 500 == 0 {
-            console_log!("Worker {}: finished {i} iterations!", metadata.id)
+            console_log!("Worker {}: finished {i} iterations!", thread::thread_id())
         } 
         i += 1;
     }
