@@ -218,7 +218,6 @@ dependencies = [
 [[package]]
 name = "wasm-ca-rs"
 version = "0.1.0"
-source = "git+https://github.com/AFKoffee/wasm-ca-rs.git?branch=main#23f8dfec82cd7e97679018adcdf2f116b5bd837f"
 dependencies = [
  "js-sys",
  "parking_lot",

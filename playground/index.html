@@ -19,38 +19,33 @@
         // This tag initializes the wasm module with wasm-bindgen
         // for the first time on the browser main thread.
         import init, { create_deadlock } from './pkg/playground.js';
-        async function run_wasm() {
-            console.log("JScript: loading wasm bindings ...");
 
-            let wasm = await init();
+        console.log("JScript: loading wasm bindings ...");
 
-            console.log('JScript: wasm module loaded.');
+        let wasm = await init();
 
-            create_deadlock();
-        }
+        console.log('JScript: wasm module loaded.');
 
         let button = document.getElementById("deadlock");
 
         button.onclick = _event => {
-            run_wasm();
+            wasm.create_deadlock();
         }
 
         let file_button = document.getElementById("filetest");
         file_button.onclick = async _event => {
-            const file = new File(["this is an example file"], "foo.txt", {
-                type: "text/plain",
-            });
-
             let a = document.getElementById("invisible-download-link");
             if (!a) {
                 a = document.createElement('a');
                 a.id = "invisible-download-link";
+                document.body.appendChild(a);
             }
             
-            a.href = URL.createObjectURL(file);
-            a.download = file.name;
-            document.body.appendChild(a);
-            a.click();
+            wasm.generate_trace_download_url((url) => {
+                a.href = url
+                a.download = "trace.bin";
+                a.click();
+            });
         }
 
     </script>

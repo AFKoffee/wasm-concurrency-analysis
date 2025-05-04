@@ -42,7 +42,7 @@ pub fn create_deadlock() {
 
         match t2.join() {
             Ok(()) => (),
-            Err(e) => console_log!("Error in thread 1: {e:?}")
+            Err(e) => console_log!("Error in thread 2: {e:?}")
         };
     });
 }
