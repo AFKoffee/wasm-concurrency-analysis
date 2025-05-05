@@ -18,18 +18,19 @@
     <script type="module">
         // This tag initializes the wasm module with wasm-bindgen
         // for the first time on the browser main thread.
-        import init, { create_deadlock } from './pkg/playground.js';
+        import init, { create_deadlock, set_bindgen_url_suffix } from './pkg/playground.js';
 
         console.log("JScript: loading wasm bindings ...");
 
         let wasm = await init();
+        set_bindgen_url_suffix("/pkg/playground.js");
 
         console.log('JScript: wasm module loaded.');
 
         let button = document.getElementById("deadlock");
 
         button.onclick = _event => {
-            wasm.create_deadlock();
+            create_deadlock();
         }
 
         let file_button = document.getElementById("filetest");

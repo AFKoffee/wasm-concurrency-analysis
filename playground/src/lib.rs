@@ -20,7 +20,7 @@ extern "C" {
 
 #[wasm_bindgen]
 pub fn create_deadlock() {
-    thread::set_bindgen_url_suffix(concat!("/pkg/", env!("CARGO_CRATE_NAME"), ".js").to_string());
+    // thread::set_bindgen_url_suffix(concat!("/pkg/", env!("CARGO_CRATE_NAME"), ".js").to_string());
     
     // Run a detached thread to to use join without freezing the main thread
     thread_spawn(|| {
