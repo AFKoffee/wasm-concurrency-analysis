@@ -218,6 +218,7 @@ dependencies = [
 [[package]]
 name = "wasm-ca-rs"
 version = "0.1.0"
+source = "git+https://github.com/AFKoffee/wasm-ca-rs.git?branch=implement-tracing#5909270f9d5273be4a1c925bb7e4135bfe41ad33"
 dependencies = [
  "js-sys",
  "parking_lot",
