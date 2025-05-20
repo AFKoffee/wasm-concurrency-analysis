@@ -34,6 +34,7 @@ pub fn create_deadlock() {
             deadlock_prone_task(&DATA_2, &DATA_1)
         });
 
+        
         console_log!("Thread {} waits for threads to finish ...", thread::thread_id());
         match t1.join() {
             Ok(()) => (),

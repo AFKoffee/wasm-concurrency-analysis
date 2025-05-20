@@ -184,6 +184,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "wasm-bindgen-futures"
+version = "0.4.50"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "555d470ec0bc3bb57890405e5d4322cc9ea83cebb085523ced7be4144dac1e61"
+dependencies = [
+ "cfg-if",
+ "js-sys",
+ "once_cell",
+ "wasm-bindgen",
+ "web-sys",
+]
+
+[[package]]
 name = "wasm-bindgen-macro"
 version = "0.2.100"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -218,11 +231,12 @@ dependencies = [
 [[package]]
 name = "wasm-ca-rs"
 version = "0.1.0"
-source = "git+https://github.com/AFKoffee/wasm-ca-rs.git?branch=implement-tracing#5909270f9d5273be4a1c925bb7e4135bfe41ad33"
+source = "git+https://github.com/AFKoffee/wasm-ca-rs.git?branch=independent-tracing#b7eac2a197e63ee05077b88a9afc16d71cd332b0"
 dependencies = [
  "js-sys",
  "parking_lot",
  "wasm-bindgen",
+ "wasm-bindgen-futures",
  "web-sys",
 ]
 
